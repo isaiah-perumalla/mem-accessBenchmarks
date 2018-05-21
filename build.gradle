@@ -1,0 +1,57 @@
+group 'isaiahp.net'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+allprojects {
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    compileJava {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    dependencies {
+        testCompile 'junit:junit:4.12'
+    }
+
+}
+
+
+project(':mem-bench') {
+    dependencies {
+        compile "org.openjdk.jmh:jmh-core:1.20"
+        compile "org.openjdk.jmh:jmh-generator-annprocess:1.20"
+    }
+
+    task bench_jar(type: Jar) {
+        zip64 true
+        manifest {
+            attributes "Main-Class": "org.openjdk.jmh.Main"
+        }
+
+        exclude "META-INF/*.SF"
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+        exclude "LICENSE*"
+
+        baseName = project.name + '-all'
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        with jar
+    }
+
+
+}
