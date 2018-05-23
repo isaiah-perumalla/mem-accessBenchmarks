@@ -37,7 +37,7 @@ project(':mem-bench') {
         compile "org.openjdk.jmh:jmh-generator-annprocess:1.20"
     }
 
-    task bench_jar(type: Jar) {
+    task bench_jar(type: Jar, dependsOn: 'build') {
         zip64 true
         manifest {
             attributes "Main-Class": "org.openjdk.jmh.Main"
