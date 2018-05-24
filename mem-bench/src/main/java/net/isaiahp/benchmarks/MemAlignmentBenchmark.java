@@ -9,28 +9,33 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class MemAlignmentBenchmark {
 
+    public static final int PRNG_SEED = 1327;
     @Param({"4096", "65536", "1048576", "16777216"})
     private int memBlockSize;
 
-    @Param({"0", "-1", "1"})
+    @Param({"0", "1", "-1"})
     private int misAlignOffset;
 
     private long baseAddress;
     private Unsafe memory;
-    private static int CACHE_LINE_SIZE = 64;
-    private int PADDING = 256;
+    private static int CACHE_LINE_SIZE = Integer.getInteger("CacheLineSize", 64);
+
 
     @Setup
     public void setUp() {
         memory = Utils.UNSAFE;
-        long address = memory.allocateMemory(memBlockSize + PADDING);
-        long cacheLineAlignedAddress = address / CACHE_LINE_SIZE * CACHE_LINE_SIZE + CACHE_LINE_SIZE;
+        long address = memory.allocateMemory(memBlockSize + CACHE_LINE_SIZE);
+        long cacheLineAlignedAddress = getCacheLineAlignedAddress(address);
         baseAddress = cacheLineAlignedAddress;
         //pre fault pages
         for(int i =0; i < memBlockSize; i+= CACHE_LINE_SIZE) {
             memory.putInt(baseAddress + i, 0);
         }
 
+    }
+
+    private long getCacheLineAlignedAddress(long address) {
+        return address / CACHE_LINE_SIZE * CACHE_LINE_SIZE + CACHE_LINE_SIZE;
     }
 
     @Benchmark
@@ -51,7 +56,7 @@ public class MemAlignmentBenchmark {
         long result = 0 ;
         int offset = 0;
         for(int i =0; i < memBlockSize; i++) {
-            offset = (offset + (256 * 1327)) & (memBlockSize -1);
+            offset = (offset + (CACHE_LINE_SIZE * PRNG_SEED)) & (memBlockSize -1);
             long address = baseAddress + offset + misAlignOffset;
             memory.putInt(address, 42);
             result += address;
