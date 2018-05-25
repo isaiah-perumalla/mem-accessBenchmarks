@@ -19,33 +19,40 @@ public class CacheConflictBenchmark {
     private int pages;
     private long baseAddress;
 
-    @Param({"0", "64"})
-    private int align ;
+    @Param({"false", "true"})
+    private boolean isPageAligned;
+
+    private int[] offsets;
 
     @Setup
     public void setUp() {
         memory = Utils.UNSAFE;
-        long address = memory.allocateMemory((pages * PG_SIZE) + (CACHE_LINE_SIZE * 2));
+        final int capacity = pages * PG_SIZE;
+        long address = memory.allocateMemory(capacity + (CACHE_LINE_SIZE * 2));
         baseAddress = getCacheLineAlignedAddress(address, CACHE_LINE_SIZE);
 
-        if(Long.bitCount(pages * PG_SIZE) != 1) {
+        if(Long.bitCount(capacity) != 1) {
             throw new IllegalStateException("memory capacity is not power of 2");
         }
-
+        int align = isPageAligned ? 0 : CACHE_LINE_SIZE;
+        offsets = new int[MAX_ITERS];
+        for(int i = 0; i < MAX_ITERS; i ++) {
+            int offset = (i*PG_SIZE) & (capacity -1) + align;
+            offsets[i] = offset;
+        }
+        offsets[MAX_ITERS -1] = 0;
 
     }
 
     @Benchmark
-    public long linearPageWrite() {
+    public long pageReadWrite() {
         long result = 0;
-        long maxCapacity = pages * PG_SIZE;
         for (int i = 0; i < MAX_ITERS; i ++) {
-            long offset = (i*PG_SIZE) & (maxCapacity -1);
-            long address = baseAddress + offset + align;
+            long offset = offsets[i];
+            long address = baseAddress + offset;
             memory.putInt(address, 42);
             result += offset;
         }
-
         return result;
     }
 
