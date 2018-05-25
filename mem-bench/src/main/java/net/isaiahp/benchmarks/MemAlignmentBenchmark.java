@@ -5,6 +5,8 @@ import sun.misc.Unsafe;
 
 import java.util.concurrent.TimeUnit;
 
+import static net.isaiahp.benchmarks.Utils.getCacheLineAlignedAddress;
+
 @State(Scope.Thread) @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class MemAlignmentBenchmark {
@@ -25,7 +27,7 @@ public class MemAlignmentBenchmark {
     public void setUp() {
         memory = Utils.UNSAFE;
         long address = memory.allocateMemory(memBlockSize + CACHE_LINE_SIZE);
-        long cacheLineAlignedAddress = getCacheLineAlignedAddress(address);
+        long cacheLineAlignedAddress = getCacheLineAlignedAddress(address, CACHE_LINE_SIZE);
         baseAddress = cacheLineAlignedAddress;
         //pre fault pages
         for(int i =0; i < memBlockSize; i+= CACHE_LINE_SIZE) {
@@ -34,9 +36,7 @@ public class MemAlignmentBenchmark {
 
     }
 
-    private long getCacheLineAlignedAddress(long address) {
-        return address / CACHE_LINE_SIZE * CACHE_LINE_SIZE + CACHE_LINE_SIZE;
-    }
+
 
     @Benchmark
     public long linearWrite() {

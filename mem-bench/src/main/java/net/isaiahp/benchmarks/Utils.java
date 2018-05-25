@@ -17,4 +17,8 @@ public class Utils {
             throw new IllegalStateException("could not find unsafe");
         }
     }
+
+    public static long getCacheLineAlignedAddress(long address, int cacheLineSize) {
+        return address / cacheLineSize * cacheLineSize + cacheLineSize;
+    }
 }
