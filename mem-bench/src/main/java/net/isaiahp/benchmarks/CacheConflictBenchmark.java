@@ -35,6 +35,8 @@ public class CacheConflictBenchmark {
             throw new IllegalStateException("memory capacity is not power of 2");
         }
         int align = isPageAligned ? 0 : CACHE_LINE_SIZE;
+
+        //store offsets in an array to induce data depended memory loads
         offsets = new int[MAX_ITERS];
         for(int i = 0; i < MAX_ITERS; i ++) {
             int offset = (i*PG_SIZE) & (capacity -1) + align;

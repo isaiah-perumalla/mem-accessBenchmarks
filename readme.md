@@ -49,7 +49,151 @@ MemAlignmentBenchmark.pseudoRandomWrite        16777216                -1  avgt 
 
 
 ### Page Alignment benchmarks
+#### ARM 7 32 bit
+```
+sudo java -jar mem-bench/build/libs/mem-bench-all.jar -wi 3 -i 3 -f 1 CacheConflict* -prof perfnorm
 
+
+```
+Results
+``` 
+Benchmark                             (isPageAligned)  (pages)  Mode  Cnt    Score    Error  Units
+CacheConflictBenchmark.pageReadWrite            false       32  avgt    3  202.550 ±  2.406  us/op
+CacheConflictBenchmark.pageReadWrite            false      128  avgt    3  203.078 ±  5.340  us/op
+CacheConflictBenchmark.pageReadWrite            false     1024  avgt    3  203.699 ± 16.421  us/op
+CacheConflictBenchmark.pageReadWrite            false     4096  avgt    3  202.729 ±  4.182  us/op
+CacheConflictBenchmark.pageReadWrite             true       32  avgt    3  492.408 ± 14.038  us/op
+CacheConflictBenchmark.pageReadWrite             true      128  avgt    3  583.352 ± 39.226  us/op
+CacheConflictBenchmark.pageReadWrite             true     1024  avgt    3  592.209 ± 78.987  us/op
+CacheConflictBenchmark.pageReadWrite             true     4096  avgt    3  591.641 ± 35.948  us/op
+
+```
+Benchmark results with cpu counter stats
+
+```
+ Benchmark                                                     (isPageAligned)  (pages)  Mode  Cnt        Score    Error  Units
+ CacheConflictBenchmark.pageReadWrite                                    false       32  avgt    3      203.208 ±  0.089  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                false       32  avgt            15.135            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses              false       32  avgt          1275.856            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                    false       32  avgt         97224.684            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses             false       32  avgt          1270.661            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                   false       32  avgt         99563.013            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses              false       32  avgt            42.312            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                      false       32  avgt            98.903            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                           false       32  avgt          9831.627            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                             false       32  avgt        735953.030            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                   false       32  avgt            68.000            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                  false       32  avgt            60.076            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                   false       32  avgt             0.742            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                       false       32  avgt         48624.398            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend            false       32  avgt            17.360            #/op
+ CacheConflictBenchmark.pageReadWrite                                    false      128  avgt    3      204.106 ±  2.147  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                false      128  avgt             9.974            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses              false      128  avgt          1270.346            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                    false      128  avgt         99949.582            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses             false      128  avgt          1268.023            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                   false      128  avgt         99133.654            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses              false      128  avgt            73.233            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                      false      128  avgt            46.364            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                           false      128  avgt         10050.116            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                             false      128  avgt        507644.035            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                   false      128  avgt           103.609            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                  false      128  avgt           107.964            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                   false      128  avgt            12.798            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                       false      128  avgt         50898.000            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend            false      128  avgt            49.241            #/op
+ CacheConflictBenchmark.pageReadWrite                                    false     1024  avgt    3      203.266 ±  4.102  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                false     1024  avgt             9.575            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses              false     1024  avgt          1286.122            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                    false     1024  avgt        100358.080            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses             false     1024  avgt          1279.275            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                   false     1024  avgt         99713.344            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses              false     1024  avgt            56.528            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                      false     1024  avgt            20.569            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                           false     1024  avgt         10045.480            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                             false     1024  avgt        481991.003            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                   false     1024  avgt           134.417            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                  false     1024  avgt           141.086            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                   false     1024  avgt            33.527            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                       false     1024  avgt         50338.098            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend            false     1024  avgt            42.642            #/op
+ CacheConflictBenchmark.pageReadWrite                                    false     4096  avgt    3      203.280 ±  5.622  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                false     4096  avgt            10.842            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses              false     4096  avgt          1257.166            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                    false     4096  avgt         97961.529            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses             false     4096  avgt          1268.318            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                   false     4096  avgt         98640.983            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses              false     4096  avgt            53.921            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                      false     4096  avgt            59.587            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                           false     4096  avgt          9739.950            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                             false     4096  avgt        539906.205            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                   false     4096  avgt           126.858            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                  false     4096  avgt            84.541            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                   false     4096  avgt             5.505            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                       false     4096  avgt         49797.155            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend            false     4096  avgt            15.176            #/op
+ CacheConflictBenchmark.pageReadWrite                                     true       32  avgt    3      684.898 ± 31.310  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                 true       32  avgt            17.581            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses               true       32  avgt         11243.268            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                     true       32  avgt        100482.194            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses              true       32  avgt         11162.340            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                    true       32  avgt        100825.220            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses               true       32  avgt           220.231            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                       true       32  avgt            98.110            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                            true       32  avgt         10010.644            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                              true       32  avgt        869778.243            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                    true       32  avgt         30124.119            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                   true       32  avgt         29753.568            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                    true       32  avgt            77.987            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                        true       32  avgt         49472.555            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend             true       32  avgt           140.843            #/op
+ CacheConflictBenchmark.pageReadWrite                                     true      128  avgt    3      779.339 ± 14.972  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                 true      128  avgt            20.907            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses               true      128  avgt         11014.722            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                     true      128  avgt        102256.180            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses              true      128  avgt         10824.524            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                    true      128  avgt        100123.732            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses               true      128  avgt           183.467            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                       true      128  avgt           290.695            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                            true      128  avgt         10099.414            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                              true      128  avgt       1047063.819            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                    true      128  avgt         29236.066            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                   true      128  avgt         29885.659            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                    true      128  avgt            12.284            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                        true      128  avgt         50081.412            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend             true      128  avgt            78.940            #/op
+ CacheConflictBenchmark.pageReadWrite                                     true     1024  avgt    3      654.941 ± 15.538  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                 true     1024  avgt            37.094            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses               true     1024  avgt         11374.183            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                     true     1024  avgt        120808.599            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses              true     1024  avgt         11259.959            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                    true     1024  avgt        120554.228            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses               true     1024  avgt           235.859            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                       true     1024  avgt            40.290            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                            true     1024  avgt          9977.511            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                              true     1024  avgt       1852690.503            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                    true     1024  avgt         29082.385            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                   true     1024  avgt         29095.590            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                    true     1024  avgt            50.581            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                        true     1024  avgt         49946.229            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend             true     1024  avgt           147.106            #/op
+ CacheConflictBenchmark.pageReadWrite                                     true     4096  avgt    3      615.349 ± 85.604  us/op
+ CacheConflictBenchmark.pageReadWrite:CPI                                 true     4096  avgt            32.162            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-load-misses               true     4096  avgt         12498.800            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-loads                     true     4096  avgt        124690.694            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-store-misses              true     4096  avgt         12755.185            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-dcache-stores                    true     4096  avgt        126188.341            #/op
+ CacheConflictBenchmark.pageReadWrite:L1-icache-load-misses               true     4096  avgt           106.919            #/op
+ CacheConflictBenchmark.pageReadWrite:branch-misses                       true     4096  avgt           390.590            #/op
+ CacheConflictBenchmark.pageReadWrite:branches                            true     4096  avgt         10605.174            #/op
+ CacheConflictBenchmark.pageReadWrite:cycles                              true     4096  avgt       1644808.029            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-load-misses                    true     4096  avgt         29344.493            #/op
+ CacheConflictBenchmark.pageReadWrite:dTLB-store-misses                   true     4096  avgt         28841.005            #/op
+ CacheConflictBenchmark.pageReadWrite:iTLB-load-misses                    true     4096  avgt             7.082            #/op
+ CacheConflictBenchmark.pageReadWrite:instructions                        true     4096  avgt         51140.920            #/op
+ CacheConflictBenchmark.pageReadWrite:stalled-cycles-frontend             true     4096  avgt            55.873            #/op
+
+ ```
 #### intel Xeon 64 bit , 32k L1 data cache
 
 
