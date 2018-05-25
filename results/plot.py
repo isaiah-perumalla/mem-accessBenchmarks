@@ -11,7 +11,7 @@ def get_data_frame(fname, name):
     df['name'] = stripped_names[stripped_names.columns[-1]]
     return df[df.name.str.endswith(name)]
 
-df = get_data_frame(r'./page-align-results.arm7.csv', 'L1-dcache-loads')
+df = get_data_frame(r'./page-align-x86.csv', 'L1-dcache-loads')
 n_groups = len(set(df['Param: pages']))
 
 pageAligned_df = df[df['Param: isPageAligned'] == True]
