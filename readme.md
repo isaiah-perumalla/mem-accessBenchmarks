@@ -88,5 +88,23 @@ CacheConflictBenchmark.pageReadWrite             true      512  avgt    3  46.25
 CacheConflictBenchmark.pageReadWrite             true     1024  avgt    3  47.330 ± 27.088  us/op
 
 ```
+#### Intel(R) Xeon(R) CPU E3-1270 v6 @ 3.80GHz
+``` 
+# Run complete. Total time: 00:01:37
 
+Benchmark                             (isPageAligned)  (pages)  Mode  Cnt   Score   Error  Units
+CacheConflictBenchmark.pageReadWrite            false        4  avgt    5   2.679 ? 0.032  us/op
+CacheConflictBenchmark.pageReadWrite            false        8  avgt    5   2.684 ? 0.061  us/op
+CacheConflictBenchmark.pageReadWrite            false       32  avgt    5   2.684 ? 0.043  us/op
+CacheConflictBenchmark.pageReadWrite            false      128  avgt    5   2.759 ? 0.063  us/op
+CacheConflictBenchmark.pageReadWrite            false      512  avgt    5   2.765 ? 0.060  us/op
+CacheConflictBenchmark.pageReadWrite            false     1024  avgt    5   2.762 ? 0.012  us/op
+CacheConflictBenchmark.pageReadWrite             true        4  avgt    5   2.697 ? 0.056  us/op
+CacheConflictBenchmark.pageReadWrite             true        8  avgt    5   2.926 ? 0.031  us/op
+CacheConflictBenchmark.pageReadWrite             true       32  avgt    5  18.928 ? 0.211  us/op
+CacheConflictBenchmark.pageReadWrite             true      128  avgt    5  27.438 ? 1.149  us/op
+CacheConflictBenchmark.pageReadWrite             true      512  avgt    5  27.692 ? 0.632  us/op
+CacheConflictBenchmark.pageReadWrite             true     1024  avgt    5  27.101 ? 0.302  us/op
+
+```
 B
