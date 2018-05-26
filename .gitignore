@@ -5,3 +5,5 @@ bin/
 build/
 **/build/**
 .gradle
+*.pyc
+*_env/**
