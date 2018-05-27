@@ -56,6 +56,28 @@ coherency_line_size: 128
 number of sets: 8
 size: 32K
 
+```
+# Run complete. Total time: 00:02:04
+
+Benchmark                             (isPageAligned)  (pages)  Mode  Cnt    Score   Error  Units
+CacheConflictBenchmark.pageReadWrite            false        4  avgt    5   21.491 ± 0.024  us/op
+CacheConflictBenchmark.pageReadWrite            false        8  avgt    5   21.492 ± 0.022  us/op
+CacheConflictBenchmark.pageReadWrite            false       16  avgt    5   21.492 ± 0.018  us/op
+CacheConflictBenchmark.pageReadWrite            false       32  avgt    5   21.494 ± 0.016  us/op
+CacheConflictBenchmark.pageReadWrite            false       64  avgt    5   21.498 ± 0.019  us/op
+CacheConflictBenchmark.pageReadWrite            false      128  avgt    5   21.502 ± 0.045  us/op
+CacheConflictBenchmark.pageReadWrite            false      512  avgt    5   21.488 ± 0.019  us/op
+CacheConflictBenchmark.pageReadWrite             true        4  avgt    5   21.502 ± 0.024  us/op
+CacheConflictBenchmark.pageReadWrite             true        8  avgt    5   21.501 ± 0.018  us/op
+CacheConflictBenchmark.pageReadWrite             true       16  avgt    5   29.710 ± 0.019  us/op
+CacheConflictBenchmark.pageReadWrite             true       32  avgt    5   61.133 ± 0.144  us/op
+CacheConflictBenchmark.pageReadWrite             true       64  avgt    5  106.485 ± 0.151  us/op
+CacheConflictBenchmark.pageReadWrite             true      128  avgt    5  106.342 ± 0.251  us/op
+CacheConflictBenchmark.pageReadWrite             true      512  avgt    5  357.565 ± 3.332  us/op
+
+
+```
+
 
 
 
