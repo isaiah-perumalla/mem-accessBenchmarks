@@ -57,15 +57,21 @@ sudo java -jar mem-bench/build/libs/mem-bench-all.jar -wi 3 -i 3 -f 1 CacheConfl
 ```
 Results
 ``` 
+# Run complete. Total time: 00:02:03
+
 Benchmark                             (isPageAligned)  (pages)  Mode  Cnt    Score    Error  Units
-CacheConflictBenchmark.pageReadWrite            false       32  avgt    3  202.550 ±  2.406  us/op
-CacheConflictBenchmark.pageReadWrite            false      128  avgt    3  203.078 ±  5.340  us/op
-CacheConflictBenchmark.pageReadWrite            false     1024  avgt    3  203.699 ± 16.421  us/op
-CacheConflictBenchmark.pageReadWrite            false     4096  avgt    3  202.729 ±  4.182  us/op
-CacheConflictBenchmark.pageReadWrite             true       32  avgt    3  492.408 ± 14.038  us/op
-CacheConflictBenchmark.pageReadWrite             true      128  avgt    3  583.352 ± 39.226  us/op
-CacheConflictBenchmark.pageReadWrite             true     1024  avgt    3  592.209 ± 78.987  us/op
-CacheConflictBenchmark.pageReadWrite             true     4096  avgt    3  591.641 ± 35.948  us/op
+CacheConflictBenchmark.pageReadWrite            false        1  avgt    5  202.448 ±  0.327  us/op
+CacheConflictBenchmark.pageReadWrite            false        2  avgt    5  202.768 ±  0.155  us/op
+CacheConflictBenchmark.pageReadWrite            false        4  avgt    5  202.668 ±  0.200  us/op
+CacheConflictBenchmark.pageReadWrite            false        8  avgt    5  203.059 ±  0.988  us/op
+CacheConflictBenchmark.pageReadWrite            false       32  avgt    5  202.448 ±  0.196  us/op
+CacheConflictBenchmark.pageReadWrite            false      128  avgt    5  202.798 ±  0.635  us/op
+CacheConflictBenchmark.pageReadWrite             true        1  avgt    5  204.281 ± 15.559  us/op
+CacheConflictBenchmark.pageReadWrite             true        2  avgt    5  202.626 ±  0.158  us/op
+CacheConflictBenchmark.pageReadWrite             true        4  avgt    5  355.587 ±  0.377  us/op
+CacheConflictBenchmark.pageReadWrite             true        8  avgt    5  357.414 ±  2.564  us/op
+CacheConflictBenchmark.pageReadWrite             true       32  avgt    5  658.425 ±  1.948  us/op
+CacheConflictBenchmark.pageReadWrite             true      128  avgt    5  591.343 ±  3.837  us/op
 
 ```
 
