@@ -49,6 +49,18 @@ MemAlignmentBenchmark.pseudoRandomWrite        16777216                -1  avgt 
 
 
 ### Page Alignment benchmarks
+
+#### ARM 8 64-bit 
+ways_of_associativity: 32
+coherency_line_size: 128
+number of sets: 8
+size: 32K
+
+
+
+
+
+
 #### ARM 7 32 bit
 ```
 sudo java -jar mem-bench/build/libs/mem-bench-all.jar -wi 3 -i 3 -f 1 CacheConflict* -prof perfnorm

@@ -15,7 +15,7 @@ public class CacheConflictBenchmark {
     private static final int PG_SIZE = 4096;
     private static final int MAX_ITERS = 100_00;
     private Unsafe memory;
-    @Param({"4", "8", "32", "128", "512", "1024"})
+    @Param({"4", "8", "16", "32", "128", "512"})
     private int pages;
     private long baseAddress;
 
