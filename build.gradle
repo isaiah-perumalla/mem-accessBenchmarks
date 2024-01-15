@@ -19,13 +19,12 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'maven'
     compileJava {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
     dependencies {
-        testCompile 'junit:junit:4.12'
+        testImplementation 'junit:junit:4.12'
     }
 
 }
@@ -33,8 +32,8 @@ subprojects {
 
 project(':mem-bench') {
     dependencies {
-        compile "org.openjdk.jmh:jmh-core:1.20"
-        compile "org.openjdk.jmh:jmh-generator-annprocess:1.20"
+        implementation "org.openjdk.jmh:jmh-core:1.37"
+        implementation "org.openjdk.jmh:jmh-generator-annprocess:1.37"
     }
 
     task bench_jar(type: Jar, dependsOn: 'build') {
@@ -48,7 +47,7 @@ project(':mem-bench') {
         exclude 'META-INF/*.RSA'
         exclude "LICENSE*"
 
-        baseName = project.name + '-all'
+        archiveBaseName = project.name + '-all'
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
         with jar
     }
