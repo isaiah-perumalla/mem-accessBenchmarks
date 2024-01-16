@@ -147,4 +147,14 @@ CacheConflictBenchmark.pageReadWrite             true      512  avgt    5  27.69
 CacheConflictBenchmark.pageReadWrite             true     1024  avgt    5  27.101 ? 0.302  us/op
 
 ```
-B
+### False sharing
+plain access
+```
+Benchmark                              Mode  Cnt  Score   Error  Units
+FalseSharingBench.write_read           avgt    2  0.004          us/op
+FalseSharingBench.write_read:reader    avgt    2  0.006          us/op
+FalseSharingBench.write_read:writer    avgt    2  0.002          us/op
+FalseSharingBench.write_write          avgt    2  0.003          us/op
+FalseSharingBench.write_write:writer0  avgt    2  0.003          us/op
+FalseSharingBench.write_write:writer1  avgt    2  0.003          us/op
+```
